@@ -1,3 +1,5 @@
-* * * * * /usr/bin/curl -v https://cogether.azurewebsites.net/help-center/freq/ > /var/log/cron.log
+* * * * * root echo "Hello world" > /var/log/cron.log
+
+#* * * * * /usr/bin/curl -v https://cogether.azurewebsites.net/help-center/freq/ > /var/log/cron.log
 #> /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
 #
