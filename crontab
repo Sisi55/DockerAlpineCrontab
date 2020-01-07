@@ -1,2 +1,2 @@
-1 * * * * /usr/bin/curl -X -v GET https://www.google.com/
+* * * * * /usr/bin/curl -v https://cogether.azurewebsites.net/help-center/freq/ > /proc/$(cat /var/run/crond.pid)/fd/1 2>&1
 #
