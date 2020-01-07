@@ -1,11 +1,17 @@
 FROM python:3.7-alpine
 
 RUN apk update && \
-    apk add --no-cache curl
+    apk add curl
 
-# crontab 파일을 cron 디렉토리에 추가
-ADD crontab /etc/cron.d/hello-cron
+###
+WORKDIR /etc/periodic
+ADD crontab ./everymin/crontab
 # 실행 권한 부여
-RUN chmod 0644 /etc/cron.d/hello-cron
+RUN chmod a+x /etc/periodic/everymin/crontab
+
+WORKDIR /etc/crontabs
+RUN echo "*       *       *       *       *       run-parts /etc/periodic/everymin" >> root
+###
+
 # Cron 실행
-CMD crond -f
+CMD /usr/sbin/crond -f
